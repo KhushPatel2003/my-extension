@@ -9,13 +9,39 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   var urlDisplay = document.getElementById("urlDisplay");
   urlDisplay.innerHTML = "Current URL: " + url;
 
-  OpenaiFetchAPI(url);
+  // OpenaiFetchAPI(url);
+  CustomSearchJSONAPI(url);
 });
 
+function CustomSearchJSONAPI(url) {
+  const API_KEY = "AIzaSyDVe_KMLF7Eb - HwD_En1MwGEXF1RHv4CgY";
+  const CSE_ID = "21b6060a515e64f50";
+  const query = "black shoes";
+  const numResults = 10;
+
+  const url1 = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CSE_ID}&q=${query}&num=${numResults}`;
+
+  fetch(url1)
+    .then((response) => response.json())
+    .then((data) => {
+      const arr = data.items;
+      // console.log(data.items);
+      for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i].link);
+      }
+
+      // Do something with the search results
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 function OpenaiFetchAPI(url) {
-  console.log("Calling GPT3");
+  console.log("Calling GPT3 at: " + url);
   var url = "https://api.openai.com/v1/completions";
-  var bearer = "Bearer " + "";
+  var bearer =
+    "Bearer " + "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";
   fetch(url, {
     method: "POST",
     headers: {
