@@ -37,38 +37,14 @@ function CustomSearchJSONAPI(query) {
         console.log(arr[i].link);
       }
 
-      document.getElementById("button1").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[0].link });
-      });
-      document.getElementById("button2").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[1].link });
-      });
-      document.getElementById("button3").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[2].link });
-      });
-      document.getElementById("button4").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[3].link });
-      });
-      document.getElementById("button5").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[4].link });
-      });
-      document.getElementById("button6").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[5].link });
-      });
-      document.getElementById("button7").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[6].link });
-      });
-      document.getElementById("button8").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[7].link });
-      });
-      document.getElementById("button9").addEventListener("click", function () {
-        chrome.tabs.create({ url: arr[8].link });
-      });
-      document
-        .getElementById("button10")
-        .addEventListener("click", function () {
-          chrome.tabs.create({ url: arr[9].link });
-        });
+      //
+      for (var i = 0; i < arr.length; i++) {
+        document
+          .getElementById("button" + (i + 1))
+          .addEventListener("click", function () {
+            chrome.tabs.create({ url: arr[i].link });
+          });
+      }
       // Do something with the search results
     })
     .catch((error) => {
