@@ -1,0 +1,65 @@
+// chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+//   var url = tabs[0].url;
+//   var urlDisplay = document.getElementById("urlDisplay");
+//   urlDisplay.innerHTML = "Current URL: " + url;
+// });
+
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  var url = tabs[0].url;
+  var urlDisplay = document.getElementById("urlDisplay");
+  urlDisplay.innerHTML = "Current URL: " + url;
+
+  var apiKey = "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";
+  var apiUrl = "https://api.openai.com/v1/engines/davinci/jobs";
+
+  const data = {
+    prompt: "Write a short story about a character named John",
+    max_tokens: 100,
+    model: "davinci",
+    temperature: 0.5,
+  };
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + apiKey,
+  };
+
+  fetch(apiUrl, {
+    method: "post",
+    headers: headers,
+    body: JSON.stringify(data),
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      console.log(story);
+    });
+
+  //   var data = {
+  //     prompt: "summarize the page at " + url,
+  //     max_tokens: 100,
+  //     model: "davinci",
+  //     temperature: 0.5,
+  //   };
+
+  //   var headers = {
+  //     "Content-Type": "application/json",
+  //     Authorization: "Bearer " + apiKey,
+  //   };
+
+  //   fetch(apiUrl, {
+  //     method: "post",
+  //     headers: headers,
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (json) {
+  //       console.log(json);
+  //         var summary = json.choices[0].text;
+  //         var summaryDisplay = document.getElementById("summaryDisplay");
+  //         summaryDisplay.innerHTML = "Summary: " + summary;
+  //     });
+});
