@@ -28,9 +28,8 @@ document.getElementById("button").addEventListener("click", function() {
 
 function OpenaiFetchAPI(url) {
   console.log("Calling GPT3");
-  var url = "https://api.openai.com/v1/engines/davinci/completions";
-  var bearer =
-    "Bearer " + "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";
+  var url = "https://api.openai.com/v1/completions";
+  var bearer = "Bearer " + "";
   fetch(url, {
     method: "POST",
     headers: {
@@ -38,13 +37,16 @@ function OpenaiFetchAPI(url) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: "write me a poem",
-      max_tokens: 64,
-      temperature: 0.5,
+      model: "text-davinci-003",
+      prompt: "what is this link about? " + url,
+      max_tokens: 100,
+      temperature: 0,
       top_p: 1,
-      n: 1,
-      stream: false,
-      logprobs: null,
+      // n: 1,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      // stream: false,
+      // logprobs: null,
       stop: null,
     }),
   })
