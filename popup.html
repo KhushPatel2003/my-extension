@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
     <link rel="stylesheet" href="button.css" />
   </head>
   <body>
-    <button id="clear">Clear</button>
+    <button onclick="clear()" id="clear">Clear</button>
+    <script>
+      function clear() {
+        console.log("clearing");
+      }
+    </script>
     <div id="urlDisplay"></div>
     <script src="popup.js"></script>
   </body>
