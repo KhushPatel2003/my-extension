@@ -12,6 +12,20 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   OpenaiFetchAPI(url);
 });
 
+document.getElementById("showMore").addEventListener("click", function() {
+  let boxes = document.querySelectorAll("#box");
+  for (let i = 3; i < boxes.length; i++) {
+    boxes[i].style.display = "block"; 
+  }
+  this.style.display = "none";
+});
+
+var url = "https://google.com";
+
+document.getElementById("button").addEventListener("click", function() {
+  chrome.tabs.create({ url: url });
+});
+
 function OpenaiFetchAPI(url) {
   console.log("Calling GPT3");
   var url = "https://api.openai.com/v1/completions";
