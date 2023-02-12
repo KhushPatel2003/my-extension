@@ -1,9 +1,3 @@
-// chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-//   var url = tabs[0].url;
-//   var urlDisplay = document.getElementById("urlDisplay");
-//   urlDisplay.innerHTML = "Current URL: " + url;
-// });
-
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   var url = tabs[0].url;
   var urlDisplay = document.getElementById("urlDisplay");
@@ -19,11 +13,6 @@ document.getElementById("showMore").addEventListener("click", function () {
   }
   this.style.display = "none";
 });
-
-
-
-// const ogImage = Object.items[0].pagemap.metatags[0]['og:image'];
-// console.log(ogImage);
 
 function CustomSearchJSONAPI(query) {
   console.log(" Calling Custom Search JSON API: " );
