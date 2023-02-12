@@ -27,16 +27,57 @@ function CustomSearchJSONAPI(query) {
     .then((data) => {
       console.log(data);
       const arr = data.items;
+
+      const imageArray = getOGImageArray(data);
+      // filter the array to have the entries that aren't logo.png at the top of the array and logo.png at the end of the array
+      const filteredImageArray = [];
+      for (var i = 0; i < imageArray.length; i++) {
+        if (imageArray[i] !== "logo.png") {
+          filteredImageArray.push(imageArray[i]);
+        }
+      }
+      for (var i = 0; i < imageArray.length; i++) {
+        if (imageArray[i] === "logo.png") {
+          filteredImageArray.push(imageArray[i]);
+        }
+      }
+
       for (var i = 0; i < arr.length; i++) {
         var imageDis = document.getElementById("og-image" + (i + 1));
         console.log(imageDis);
-        imageDis.src = getOGImage(data, i);
+        imageDis.src = filteredImageArray[i];
       }
+
+      console.log("fhiadlsfjali");
+      const siteNameArrayy = getSiteNameArray(data);
+      const filteredSiteNameArray = [];
+      for (var i = 0; i < arr.length; i++) {
+        if (siteNameArrayy[i] !== "No Site Name") {
+          filteredSiteNameArray.push(siteNameArrayy[i]);
+        }
+      }
+
+      for (var i = 0; i < arr.length; i++) {
+        if (siteNameArrayy[i] === "No Site Name") {
+          filteredSiteNameArray.push(siteNameArrayy[i]);
+        }
+      }
+
       for (var i = 0; i < arr.length; i++) {
         var siteName = document.getElementById("site-name" + (i + 1));
-        const ogSiteName = getSiteName(data, i);
-        siteName.innerHTML = ogSiteName;
+        siteName.innerHTML = filteredSiteNameArray[i];
       }
+
+      // for (var i = 0; i < arr.length; i++) {
+      //   var siteName = document.getElementById("site-name" + (i + 1));
+      //   siteName.innerHTML = filteredSiteNameArray[i];
+      // }
+
+      // for (var i = 0; i < arr.length; i++) {
+      //   var siteName = document.getElementById("site-name" + (i + 1));
+      //   const ogSiteName = getSiteName(data, i);
+      //   siteName.innerHTML = ogSiteName;
+      // }
 
       // console.log(data.items);
       for (var i = 0; i < arr.length; i++) {
@@ -137,4 +178,30 @@ function getSiteName(Object, i) {
     return ogSiteName.substring(0, 20) + "...";
   }
   return ogSiteName;
+}
+
+function getOGImageArray(Object) {
+  const res = [];
+  for (var i = 0; i < Object.items.length; i++) {
+    const ogImage = Object.items[i].pagemap.metatags[0]["og:image"];
+    if (!ogImage || !ogImage.startsWith("http")) {
+      res.push("logo.png");
+    } else {
+      res.push(ogImage);
+    }
+  }
+  return res;
+}
+
+function getSiteNameArray(Object) {
+  const res = [];
+  for (var i = 0; i < Object.items.length; i++) {
+    const ogSiteName = Object.items[i].pagemap.metatags[0]["og:site_name"];
+    if (!ogSiteName) {
+      res.push("No Site Name");
+    } else {
+      res.push(ogSiteName);
+    }
+  }
+  return res;
 }
