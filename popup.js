@@ -15,9 +15,9 @@ document.getElementById("showMore").addEventListener("click", function () {
 });
 
 function CustomSearchJSONAPI(query) {
-  console.log(" Calling Custom Search JSON API: " );
-  const API_KEY = "AIzaSyAmHi8ZGUlbkWl-DKU4L84Yi0xyEcIETyA";
-  const CSE_ID = "d66f90d53f030418b";
+  console.log(" Calling Custom Search JSON API: ");
+  const API_KEY = "";
+  const CSE_ID = "";
   const numResults = 10;
 
   const url1 = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CSE_ID}&q=${query}&num=${numResults}`;
@@ -28,12 +28,12 @@ function CustomSearchJSONAPI(query) {
       console.log(data);
       const arr = data.items;
       for (var i = 0; i < arr.length; i++) {
-        var imageDis = document.getElementById("og-image" + (i+1));
-        console.log(imageDis)
+        var imageDis = document.getElementById("og-image" + (i + 1));
+        console.log(imageDis);
         imageDis.src = getOGImage(data, i);
       }
       for (var i = 0; i < arr.length; i++) {
-        var siteName = document.getElementById("site-name" + (i+1));
+        var siteName = document.getElementById("site-name" + (i + 1));
         const ogSiteName = getSiteName(data, i);
         siteName.innerHTML = ogSiteName;
       }
@@ -85,8 +85,7 @@ function CustomSearchJSONAPI(query) {
 function OpenaiFetchAPI(url) {
   console.log("Calling GPT3 at: " + url);
   var url1 = "https://api.openai.com/v1/completions";
-  var bearer =
-    "Bearer " + "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";
+  var bearer = "Bearer " + "";
   fetch(url1, {
     method: "POST",
     headers: {
@@ -122,7 +121,7 @@ function OpenaiFetchAPI(url) {
 
 function getOGImage(Object, i) {
   const ogImage = Object.items[i].pagemap.metatags[0]["og:image"];
-  if (!ogImage || ! ogImage.startsWith("http")) {
+  if (!ogImage || !ogImage.startsWith("http")) {
     return "logo.png";
   }
   return ogImage;
