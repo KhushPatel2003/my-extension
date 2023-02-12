@@ -7,7 +7,7 @@
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   var url = tabs[0].url;
   var urlDisplay = document.getElementById("urlDisplay");
-  urlDisplay.innerHTML = "Current URL: " + url;
+  console.log(urlDisplay);
 
   OpenaiFetchAPI(url);
 });
@@ -20,9 +20,15 @@ document.getElementById("showMore").addEventListener("click", function () {
   this.style.display = "none";
 });
 
+
+
+// const ogImage = Object.items[0].pagemap.metatags[0]['og:image'];
+// console.log(ogImage);
+
 function CustomSearchJSONAPI(query) {
-  const API_KEY = "AIzaSyDVe_KMLF7Eb - HwD_En1MwGEXF1RHv4CgY";
-  const CSE_ID = "21b6060a515e64f50";
+  console.log(" Calling Custom Search JSON API: " );
+  const API_KEY = "AIzaSyAmHi8ZGUlbkWl-DKU4L84Yi0xyEcIETyA";
+  const CSE_ID = "d66f90d53f030418b";
   const numResults = 10;
 
   const url1 = `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CSE_ID}&q=${query}&num=${numResults}`;
@@ -32,6 +38,17 @@ function CustomSearchJSONAPI(query) {
     .then((data) => {
       console.log(data);
       const arr = data.items;
+      for (var i = 0; i < arr.length; i++) {
+        var imageDis = document.getElementById("og-image" + (i+1));
+        console.log(imageDis)
+        imageDis.src = getOGImage(data, i);
+      }
+      for (var i = 0; i < arr.length; i++) {
+        var siteName = document.getElementById("site-name" + (i+1));
+        const ogSiteName = getSiteName(data, i);
+        siteName.innerHTML = ogSiteName;
+      }
+
       // console.log(data.items);
       for (var i = 0; i < arr.length; i++) {
         console.log(arr[i].link);
@@ -107,13 +124,29 @@ function OpenaiFetchAPI(url) {
       return response.json();
     })
     .then((data) => {
-      // console.log(data);
-      // console.log(typeof data);
-      // console.log(Object.keys(data));
-      console.log(data["choices"][0].text);
       CustomSearchJSONAPI(data["choices"][0].text);
     })
     .catch((error) => {
       console.log("Something bad happened " + error);
     });
+}
+
+function getOGImage(Object, i) {
+  const ogImage = Object.items[i].pagemap.metatags[0]["og:image"];
+  if (!ogImage || ! ogImage.startsWith("http")) {
+    return "logo.png";
+  }
+  return ogImage;
+}
+
+function getSiteName(Object, i) {
+  const ogSiteName = Object.items[i].pagemap.metatags[0]["og:site_name"];
+  if (!ogSiteName) {
+    return "No Site Name";
+  }
+  console.log(ogSiteName);
+  if (ogSiteName.length > 20) {
+    return ogSiteName.substring(0, 20) + "...";
+  }
+  return ogSiteName;
 }
