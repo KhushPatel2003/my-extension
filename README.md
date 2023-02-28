@@ -2,7 +2,8 @@
 
 Product Pal. For your shopping frenzy.
 
-<img width="1470" alt="Screen Shot 2023-02-12 at 4 20 04 AM" src="https://user-images.githubusercontent.com/49328865/218317014-1be69979-0b4b-41e1-8f02-66e093b5cc15.png">
+[Watch the Demo](https://www.youtube.com/watch?v=TQyT38PBkbE)
 
-<img width="1470" alt="Screen Shot 2023-02-12 at 9 27 48 AM" src="https://user-images.githubusercontent.com/49328865/218317019-5a882fbc-ba8e-491e-a84a-c0557518c183.png">
-
+<img width="1470" alt="Screen Shot 2023-02-12 at 9 38 36 AM" src="https://user-images.githubusercontent.com/49328865/218317755-96cd72f3-86c3-45cc-b311-48c81e4194e4.png">
+<img width="1470" alt="Screen Shot 2023-02-12 at 9 39 34 AM" src="https://user-images.githubusercontent.com/49328865/218317761-ae68a969-5ee8-4b1a-88f0-c50bef208233.png">
+<img width="1470" alt="Screen Shot 2023-02-12 at 9 41 52 AM" src="https://user-images.githubusercontent.com/49328865/218317766-984ba04a-92aa-4ad7-b182-06c479cc4744.png">
