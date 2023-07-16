@@ -2,6 +2,8 @@
 
 Product Pal. For your shopping frenzy.
 
+// product pal
+
 [Watch the Demo](https://www.youtube.com/watch?v=TQyT38PBkbE)
 
 <img width="1470" alt="Screen Shot 2023-02-12 at 9 38 36 AM" src="https://user-images.githubusercontent.com/49328865/218317755-96cd72f3-86c3-45cc-b311-48c81e4194e4.png">
